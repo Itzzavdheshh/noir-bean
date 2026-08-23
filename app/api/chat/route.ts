@@ -461,7 +461,6 @@ export async function POST(request: Request) {
         (item) =>
           `${arabic ? item.name_ar : item.name_en} — ${money(
             item.base_price,
-            arabic,
           )}`,
       )
       .join(arabic ? "، " : "; ");
@@ -544,13 +543,11 @@ export async function POST(request: Request) {
             } = ${money(
               Number(item.product.base_price) *
                 item.quantity,
-              arabic,
             )}`,
         )
         .join("\n") +
       `\n${arabic ? "الإجمالي" : "Total"} = ${money(
         total,
-        arabic,
       )}\n${
         arabic
           ? "الأسعار الأساسية قبل الإضافات أو تغيير الحجم."
@@ -584,13 +581,11 @@ export async function POST(request: Request) {
         ? arabic
           ? `المتاح من ${money(
               minimum,
-              true,
             )} إلى ${money(maximum)}:\n${productLines(
               available,
             )}`
           : `Available from ${money(
               minimum,
-              false,
             )} to ${money(maximum)}:\n${productLines(
               available,
             )}`
@@ -644,7 +639,6 @@ export async function POST(request: Request) {
     reply = arabic
       ? `أرخص اختيار متاح هو ${cheapest.name_ar} بسعر ${money(
           cheapest.base_price,
-          true,
         )}.`
       : `The cheapest available item is ${
           cheapest.name_en
@@ -679,13 +673,11 @@ export async function POST(request: Request) {
           strongest.name_ar
         }: ${strongest.description_ar || ""} — ${money(
           strongest.base_price,
-          true,
         )}. ولو عايزاه أطول وأخف شوية اختاري Americano.`
       : `For a bold, focused cup, choose ${
           strongest.name_en
         }: ${strongest.description_en || ""} — ${money(
           strongest.base_price,
-          false,
         )}. Choose Americano for a longer, slightly lighter drink.`;
   } else if (
     !reply &&
@@ -701,13 +693,11 @@ export async function POST(request: Request) {
           sweet.name_ar
         } بسعر ${money(
           sweet.base_price,
-          true,
         )}. ولو بتحبي الشوكولاتة اختاري Mocha أو White Mocha.`
       : `A sweet, creamy pick: ${
           sweet.name_en
         } at ${money(
           sweet.base_price,
-          false,
         )}. For chocolate, choose Mocha or White Mocha.`;
   } else if (
     !reply &&
@@ -781,13 +771,11 @@ export async function POST(request: Request) {
           "متاح الآن في المنيو"
         } — السعر ${money(
           matchedProduct.base_price,
-          true,
         )}. القسم: ${matchedProduct.category_ar}.`
       : `${matchedProduct.name_en}: ${
           matchedProduct.description_en || "Available now"
         } — ${money(
           matchedProduct.base_price,
-          false,
         )}. Category: ${matchedProduct.category_en}.`;
   } else if (
     !reply &&
