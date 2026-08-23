@@ -4,12 +4,14 @@ import { Heart,LayoutDashboard,LogIn,LogOut,Menu,Package,Search,ShoppingBag,User
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import { usePathname,useRouter } from "next/navigation";
+import { useCurrency } from "@/lib/currency";
 
 const links=[["Home","/#home"],["Our story","/#coffee-story"],["Experience","/#alchemy"],["Menu","/menu"],["Contact","/#contact"]] as const;
 
 export default function Navbar(){
  const root=useRef<HTMLElement>(null),accountRef=useRef<HTMLDivElement>(null),searchInput=useRef<HTMLInputElement>(null);
  const pathname=usePathname(),router=useRouter();
+ const { symbol, toggle: toggleCurrency } = useCurrency();
  const [open,setOpen]=useState(false),[searchOpen,setSearchOpen]=useState(false),[accountOpen,setAccountOpen]=useState(false),[query,setQuery]=useState(""),[scrolled,setScrolled]=useState(false),[user,setUser]=useState<any>(null);
  useGSAP(()=>{gsap.from(root.current,{y:-42,opacity:0,duration:1,delay:.15,ease:"power3.out"})},{scope:root});
  useEffect(()=>{const fn=()=>setScrolled(window.scrollY>40||pathname!=="/");fn();addEventListener("scroll",fn,{passive:true});return()=>removeEventListener("scroll",fn)},[pathname]);
@@ -28,6 +30,7 @@ export default function Navbar(){
    <ul className="hidden items-center gap-7 xl:gap-10 lg:flex">{links.map(([l,h])=><li key={h}><a onClick={()=>setAccountOpen(false)} className="text-[15px] font-medium opacity-85 transition hover:opacity-100 xl:text-[16px]" href={h}>{l}</a></li>)}</ul>
    <div ref={accountRef} className="relative flex items-center gap-1.5 sm:gap-2">
     <button onClick={()=>{setSearchOpen(true);setAccountOpen(false)}} aria-label="Search" className="grid h-10 w-10 place-items-center rounded-full border border-current/15"><Search size={17}/></button>
+    <button onClick={toggleCurrency} aria-label="Toggle currency" title={`Switch to ${symbol === '₹' ? '$' : '₹'}`} className="hidden h-10 min-w-[40px] place-items-center rounded-full border border-current/15 px-2 text-[12px] font-semibold sm:grid">{symbol}</button>
     <a href="/favorites" onClick={()=>setAccountOpen(false)} className="hidden h-10 w-10 place-items-center rounded-full border border-current/15 sm:grid"><Heart size={17}/></a>
     <button onClick={()=>setAccountOpen(v=>!v)} aria-expanded={accountOpen} aria-label="Account menu" className="grid h-10 w-10 place-items-center rounded-full border border-current/15"><User size={17}/></button>
     <a href="/menu" onClick={()=>setAccountOpen(false)} className={`hidden items-center gap-2 rounded-full px-5 py-2.5 text-[12px] md:flex ${light?"bg-[#4b2b1b] text-white":"bg-[#ead0b2] text-[#2d190f]"}`}><ShoppingBag size={15}/>Explore menu</a>

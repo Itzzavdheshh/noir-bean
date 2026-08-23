@@ -20,6 +20,7 @@ import {
   menuItems,
   type Drink,
 } from "@/lib/menu-data";
+import { useCurrency } from "@/lib/currency";
 
 type CartItem = {
   key: string;
@@ -38,10 +39,11 @@ const sizeDelta = {
   Large: 35,
 } as const;
 
-const whatsappNumber = "201013290912";
+const whatsappNumber = "917690863039";
 
 export default function MenuExperience() {
   const searchParams = useSearchParams();
+  const { format } = useCurrency();
   const [category, setCategory] =
     useState<(typeof categories)[number]>("All");
 
@@ -247,7 +249,7 @@ export default function MenuExperience() {
           (item) =>
             `â€¢ ${item.quantity}أ— ${item.drink.name}` +
             ` â€” ${item.size}, ${item.temperature}, ${item.sugar}, ${item.beanType}` +
-            ` â€” ${item.unitPrice * item.quantity} EGP`,
+            ` â€” ${item.unitPrice * item.quantity}`,
         )
         .join("\n");
 
@@ -258,7 +260,7 @@ export default function MenuExperience() {
         `Phone: ${customerPhone}\n` +
         `Address: ${address}\n\n` +
         `${lines}\n\n` +
-        `Total: ${total} EGP` +
+        `Total: ${total}` +
         `${notes.trim() ? `\nNotes: ${notes.trim()}` : ""}`;
 
       window.open(
@@ -462,7 +464,7 @@ export default function MenuExperience() {
 
                         <div className="mt-5 flex items-center justify-between border-t border-[#74482f]/10 pt-4">
                           <span className="text-sm font-medium">
-                            From {drink.basePrice} EGP
+                            From {format(drink.basePrice)}
                           </span>
 
                           <span className="text-xs text-[#9a6747] transition duration-300 group-hover:translate-x-1">
@@ -591,7 +593,7 @@ export default function MenuExperience() {
                   <span>Add to order</span>
 
                   <span>
-                    {selected.basePrice + sizeDelta[size]} EGP
+                    {format(selected.basePrice + sizeDelta[size])}
                   </span>
                 </button>
               </div>
@@ -708,7 +710,7 @@ export default function MenuExperience() {
                         </div>
 
                         <span className="text-sm font-medium">
-                          {item.unitPrice * item.quantity} EGP
+                          {format(item.unitPrice * item.quantity)}
                         </span>
                       </div>
                     </div>
@@ -759,7 +761,7 @@ export default function MenuExperience() {
                   <span>Total</span>
 
                   <strong className="font-serif text-3xl">
-                    {total} EGP
+                    {format(total)}
                   </strong>
                 </div>
 

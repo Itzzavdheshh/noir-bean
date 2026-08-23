@@ -18,9 +18,11 @@ import {
   menuItems,
   type MenuItem,
 } from "@/lib/menu-data";
+import { useCurrency } from "@/lib/currency";
 
 export default function DrinkMenu() {
   const router = useRouter();
+  const { format } = useCurrency();
   const [filter, setFilter] =
     useState<(typeof categories)[number]>("All");
 
@@ -225,7 +227,7 @@ export default function DrinkMenu() {
 
                     <div className="mt-5 flex items-center justify-between border-t border-[#72472f]/10 pt-4">
                       <span className="font-serif text-xl">
-                        {item.basePrice} EGP
+                        {format(item.basePrice)}
                       </span>
 
                       <span className="grid h-10 w-10 place-items-center rounded-full bg-[#4b2b1b] text-white transition group-hover:rotate-90 group-hover:scale-110">
@@ -334,7 +336,7 @@ export default function DrinkMenu() {
                     : "Add to order"}
                 </span>
 
-                <span>{active.basePrice} EGP</span>
+                <span>{format(active.basePrice)}</span>
               </a>
             </div>
           </div>

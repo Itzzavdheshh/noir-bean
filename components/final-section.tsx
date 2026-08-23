@@ -22,7 +22,7 @@ export default function FinalSection() {
           <p className="text-[10px] uppercase tracking-[.4em] text-[#e5bd98]">Your next coffee is waiting</p>
           <h2 className="mt-4 max-w-2xl font-serif text-[clamp(3.5rem,6vw,6.8rem)] leading-[.9] tracking-[-.05em]">Come for the coffee. Stay for the feeling.</h2>
           <p className="mt-6 max-w-lg text-white/60">A cinematic coffee experience, crafted with warmth, detail and a little everyday magic.</p>
-          <div className="mt-8 flex flex-wrap gap-3"><a className="rounded-full bg-[#ead1b5] px-7 py-3.5 text-sm text-[#2a180f]" href="mailto:hello@coffee.example">Book a table</a><a className="rounded-full border border-white/20 px-7 py-3.5 text-sm" href="#home">Back to top</a></div>
+          <div className="mt-8 flex flex-wrap gap-3"><a className="rounded-full bg-[#ead1b5] px-7 py-3.5 text-sm text-[#2a180f]" href="mailto:aavdhesh.dadhich@gmail.com">Contact Us</a><a className="rounded-full border border-white/20 px-7 py-3.5 text-sm" href="#home">Back to top</a></div>
         </div>
         <div data-final className="relative mt-10 aspect-[4/3] overflow-hidden rounded-[2rem] lg:mt-0">
           <Image src="/story-2.jpg" alt="Coffee shop ritual" fill sizes="(max-width: 900px) 90vw, 40vw" className="object-cover" />

@@ -10,16 +10,12 @@ import {
   X,
 } from "lucide-react";
 
-import { useLanguage } from "@/components/LanguageProvider";
-
 type Message = {
   role: "user" | "bot";
   text: string;
 };
 
 export default function ChatBot() {
-  const { isArabic } = useLanguage();
-
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
@@ -62,27 +58,16 @@ export default function ChatBot() {
     });
   }, [messages, busy]);
 
-  const welcome = isArabic
-    ? "أهلًا بيك في NØIR BEAN ☕ اسألني بطريقتك حتى لو في أخطاء كتابة. أقدر أرشحلك مشروب حسب مزاجك أو ميزانيتك، أشرح أنواع البن، وأحسب إجمالي طلبك."
-    : "Welcome to NØIR BEAN ☕ Ask naturally—even with typos. I can recommend drinks by mood or budget, explain bean types, and calculate order totals.";
+  const welcome = "Welcome to NØIR BEAN ☕ Ask naturally—even with typos. I can recommend drinks by mood or budget, explain bean types, and calculate order totals.";
 
-  const suggestions = isArabic
-    ? [
-        "أنا مصدعة أشرب إيه؟",
-        "عايزة حاجة من 100 لـ 150 جنيه",
-        "عايزة حاجة باردة وحلوة",
-        "إيه أقوى مشروب؟",
-        "أنواع البن والفرق بينهم",
-        "احسب 2 لاتيه وكرواسون فستق",
-      ]
-    : [
-        "What should I drink for a headache?",
-        "Something from 100 to 150 EGP",
-        "I want something cold and sweet",
-        "What is the strongest drink?",
-        "Explain the bean types",
-        "Calculate 2 lattes and a pistachio croissant",
-      ];
+  const suggestions = [
+    "What should I drink for a headache?",
+    "Something from 100 to 150",
+    "I want something cold and sweet",
+    "What is the strongest drink?",
+    "Explain the bean types",
+    "Calculate 2 lattes and a pistachio croissant",
+  ];
 
   async function send(text = input) {
     const clean = text.trim();
@@ -121,9 +106,7 @@ export default function ChatBot() {
           role: "bot",
           text:
             data.reply ||
-            (isArabic
-              ? "معلش، جربي تسألي بصياغة تانية."
-              : "Sorry, please try asking another way."),
+            "Sorry, please try asking another way.",
         },
       ]);
     } catch {
@@ -131,9 +114,7 @@ export default function ChatBot() {
         ...current,
         {
           role: "bot",
-          text: isArabic
-            ? "حصل خطأ بسيط. جرّبي تاني."
-            : "Something went wrong. Please try again.",
+          text: "Something went wrong. Please try again.",
         },
       ]);
     } finally {
@@ -176,7 +157,7 @@ export default function ChatBot() {
                 <div>
                   <strong>NØIR Assistant</strong>
                   <p className="text-[10px] text-white/55">
-                    Live menu · Arabic · English
+                    Live menu · English
                   </p>
                 </div>
               </div>
@@ -213,7 +194,7 @@ export default function ChatBot() {
 
             <div className="flex-1 space-y-3 overflow-y-auto p-4">
               <div
-                dir={isArabic ? "rtl" : "ltr"}
+                dir="ltr"
                 className="max-w-[90%] rounded-2xl bg-white/75 px-4 py-3 text-sm leading-6 shadow-sm"
               >
                 {welcome}
@@ -239,9 +220,7 @@ export default function ChatBot() {
 
               {busy && (
                 <div className="max-w-[70%] animate-pulse rounded-2xl bg-white/75 px-4 py-3 text-sm">
-                  {isArabic
-                    ? "NØIR بيفكر…"
-                    : "NØIR is thinking…"}
+                  NØIR is thinking…
                 </div>
               )}
 
@@ -279,12 +258,7 @@ export default function ChatBot() {
                     send();
                   }
                 }}
-                dir={isArabic ? "rtl" : "ltr"}
-                placeholder={
-                  isArabic
-                    ? "اكتب سؤالك بطريقتك..."
-                    : "Ask anything..."
-                }
+                placeholder="Ask anything..."
                 className="min-w-0 flex-1 rounded-full bg-white/80 px-4 py-3 text-sm outline-none ring-[#8b5a3c]/20 transition focus:ring-4"
               />
 

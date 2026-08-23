@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import ChatBot from "@/components/ChatBot";
 import LanguageProvider from "@/components/LanguageProvider";
+import { CurrencyProvider } from "@/lib/currency";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -43,9 +44,11 @@ export default function SiteProviders({ children }: { children: React.ReactNode 
   }, []);
 
   return (
-    <LanguageProvider>
-      {children}
-      <ChatBot />
-    </LanguageProvider>
+    <CurrencyProvider>
+      <LanguageProvider>
+        {children}
+        <ChatBot />
+      </LanguageProvider>
+    </CurrencyProvider>
   );
 }

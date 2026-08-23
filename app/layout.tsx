@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import SiteProviders from "@/components/SiteProviders";
 
-const siteUrl = "https://noir-bean-three.vercel.app";
+const siteUrl = "https://noir-bean-delta.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -37,7 +37,6 @@ export const metadata: Metadata = {
       },
     ],
     locale: "en_US",
-    alternateLocale: ["ar_EG"],
   },
 
   twitter: {

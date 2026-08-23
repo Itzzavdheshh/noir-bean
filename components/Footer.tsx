@@ -1,27 +1,39 @@
 import Image from "next/image";
 import {
-  Facebook,
+  Github,
   Instagram,
+  Linkedin,
   Mail,
+  MessageCircle,
   Phone,
-  Music2,
+  Twitter,
 } from "lucide-react";
 
 const socialLinks = [
   {
     label: "Instagram",
-    href: "https://www.instagram.com/riweb_s",
+    href: "https://www.instagram.com/itzzavdheshh?igsi=MTFkNTM5OGljOHV5aQ==",
     icon: Instagram,
   },
   {
-    label: "TikTok",
-    href: "https://www.tiktok.com/@riwebs?_r=1&_t=ZS-98JlqhtmWA5",
-    icon: Music2,
+    label: "X / Twitter",
+    href: "https://x.com/Itzzavdheshh",
+    icon: Twitter,
   },
   {
-    label: "Facebook",
-    href: "https://www.facebook.com/share/1FPBCjVdJf/?mibextid=wwXIfr",
-    icon: Facebook,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/aavdhesh",
+    icon: Linkedin,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/itzzavdheshh",
+    icon: Github,
+  },
+  {
+    label: "Discord",
+    href: "https://discord.com/users/1385290408698839223",
+    icon: MessageCircle,
   },
 ];
 
@@ -31,7 +43,7 @@ export default function Footer() {
       id="contact"
       className="relative overflow-hidden px-6 pb-8 pt-20 text-[#3b2418] md:px-12"
     >
-      {/* صورة الخلفية */}
+      {/* Background image */}
       <div className="absolute inset-0">
         <Image
           src="/header.png"
@@ -43,17 +55,18 @@ export default function Footer() {
         />
       </div>
 
-      {/* طبقة فاتحة لتوضيح النص فوق الخلفية */}
+      {/* Light overlay */}
       <div className="absolute inset-0 bg-[#f5e8d8]/[0.88]" />
 
-      {/* تدرجات بنية خفيفة */}
+      {/* Subtle gradients */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_86%_18%,rgba(151,96,56,.18),transparent_34%),radial-gradient(circle_at_8%_88%,rgba(115,69,40,.14),transparent_31%)]" />
 
-      {/* Texture خفيف */}
+      {/* Texture */}
       <div className="absolute inset-0 opacity-[0.06] [background-image:radial-gradient(rgba(74,43,25,.7)_0.6px,transparent_0.6px)] [background-size:6px_6px]" />
 
       <div className="relative mx-auto max-w-[1450px]">
         <div className="grid gap-14 border-b border-[#70452f]/20 pb-16 lg:grid-cols-[1.45fr_.75fr_.9fr_.8fr]">
+          {/* Brand */}
           <div>
             <div className="flex items-center gap-4">
               <div className="flex h-14 w-14 items-center justify-center rounded-full border border-[#8a5739]/35 bg-white/35 font-serif text-lg text-[#6a3d26] shadow-[0_10px_30px_rgba(82,48,28,.12)] backdrop-blur-sm">
@@ -77,49 +90,22 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Navigation */}
           <div>
             <p className="text-[9px] uppercase tracking-[.36em] text-[#8a5739]">
               Navigation
             </p>
 
             <nav className="mt-7 flex flex-col gap-3 text-sm text-[#4c3022]/75">
-              <a
-                className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]"
-                href="/#home"
-              >
-                Home
-              </a>
-
-              <a
-                className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]"
-                href="/#coffee-story"
-              >
-                Our story
-              </a>
-
-              <a
-                className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]"
-                href="/#alchemy"
-              >
-                Experience
-              </a>
-
-              <a
-                className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]"
-                href="/menu"
-              >
-                Menu
-              </a>
-
-              <a
-                className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]"
-                href="/admin"
-              >
-                Admin
-              </a>
+              <a className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]" href="/#home">Home</a>
+              <a className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]" href="/#coffee-story">Our story</a>
+              <a className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]" href="/#alchemy">Experience</a>
+              <a className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]" href="/menu">Menu</a>
+              <a className="transition duration-300 hover:translate-x-1 hover:text-[#2f1b12]" href="/admin">Admin</a>
             </nav>
           </div>
 
+          {/* Contact */}
           <div>
             <p className="text-[9px] uppercase tracking-[.36em] text-[#8a5739]">
               Contact
@@ -128,12 +114,12 @@ export default function Footer() {
             <div className="mt-7 space-y-4 text-sm text-[#4c3022]/75">
               <div className="flex items-center gap-3">
                 <Mail className="h-4 w-4 text-[#8a5739]" />
-                contact@noirbean.com
+                aavdhesh.dadhich@gmail.com
               </div>
 
               <div className="flex items-center gap-3">
                 <Phone className="h-4 w-4 text-[#8a5739]" />
-                +20 100 000 0000
+                +91 7690863039
               </div>
 
               <p className="pl-7 text-xs text-[#62412f]/60">
@@ -142,9 +128,10 @@ export default function Footer() {
             </div>
           </div>
 
+          {/* Social Links */}
           <div>
             <p className="text-[9px] uppercase tracking-[.36em] text-[#8a5739]">
-              Follow RiWebs
+              Connect
             </p>
 
             <div className="mt-7 flex flex-col gap-3">
@@ -176,15 +163,15 @@ export default function Footer() {
           </span>
 
           <a
-            href="https://www.instagram.com/riweb_s"
+            href="https://www.linkedin.com/in/aavdhesh"
             target="_blank"
             rel="noreferrer"
             className="group flex items-center gap-4 text-left"
           >
             <span className="relative h-14 w-14 overflow-hidden rounded-full border border-[#70452f]/20 bg-white shadow-[0_10px_30px_rgba(82,48,28,.22)]">
               <Image
-                src="/branding/riwebs-logo.png"
-                alt="RiWebs logo"
+                src="/branding/avdhesh-logo.jpg"
+                alt="Avdhesh Dadhich"
                 fill
                 sizes="56px"
                 className="object-cover"
@@ -193,11 +180,11 @@ export default function Footer() {
 
             <span>
               <span className="block text-[8px] uppercase tracking-[.32em] text-[#5c3b2a]/55">
-                Designed & developed by
+                Designed &amp; developed by
               </span>
 
               <span className="mt-1 block font-serif text-2xl tracking-[.08em] text-[#7b4b31] transition duration-300 group-hover:tracking-[.14em] group-hover:text-[#4a2b1d]">
-                RiWebs
+                Avdhesh Dadhich
               </span>
             </span>
           </a>

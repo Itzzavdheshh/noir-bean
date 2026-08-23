@@ -4,10 +4,12 @@ import { useEffect, useState } from "react";
 import { MapPin, PackageCheck, Phone, User } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { useCurrency } from "@/lib/currency";
 
 export default function OrdersPage() {
   const [orders, setOrders] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const { format } = useCurrency();
 
   useEffect(() => {
     fetch("/api/orders")
@@ -37,7 +39,7 @@ export default function OrdersPage() {
                   {order.notes && <div className="rounded-2xl bg-white/40 p-4"><strong>Notes</strong><p className="mt-2 whitespace-pre-wrap">{order.notes}</p></div>}
                 </div>
               </div>
-              <strong className="font-serif text-3xl">{Number(order.total).toFixed(2)} EGP</strong>
+              <strong className="font-serif text-3xl">{format(Number(order.total))}</strong>
             </div>
           </article>)}</div> :
         <div className="mt-12 rounded-[36px] bg-white/50 p-14 text-center"><PackageCheck className="mx-auto" size={36}/><p className="mt-5 text-xl">No account orders yet.</p><a href="/menu" className="mt-6 inline-block rounded-full bg-[#3a2115] px-6 py-3 text-white">Start an order</a></div>}

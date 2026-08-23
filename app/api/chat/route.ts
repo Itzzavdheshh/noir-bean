@@ -131,10 +131,8 @@ function hasAny(text: string, phrases: string[], threshold = 0.72) {
   );
 }
 
-const money = (value: unknown, arabic: boolean) =>
-  `${Number(value).toFixed(Number(value) % 1 ? 2 : 0)} ${
-    arabic ? "جنيه" : "EGP"
-  }`;
+const money = (value: unknown) =>
+  `₹${Number(value).toFixed(Number(value) % 1 ? 2 : 0)}`;
 
 const aliases: Record<string, string[]> = {
   espresso: [
@@ -587,13 +585,13 @@ export async function POST(request: Request) {
           ? `المتاح من ${money(
               minimum,
               true,
-            )} إلى ${money(maximum, true)}:\n${productLines(
+            )} إلى ${money(maximum)}:\n${productLines(
               available,
             )}`
           : `Available from ${money(
               minimum,
               false,
-            )} to ${money(maximum, false)}:\n${productLines(
+            )} to ${money(maximum)}:\n${productLines(
               available,
             )}`
         : arabic
@@ -650,7 +648,7 @@ export async function POST(request: Request) {
         )}.`
       : `The cheapest available item is ${
           cheapest.name_en
-        } at ${money(cheapest.base_price, false)}.`;
+        } at ${money(cheapest.base_price)}.`;
   } else if (
     !reply &&
     hasAny(query, intentWords.expensive, 0.7)
@@ -663,10 +661,10 @@ export async function POST(request: Request) {
     reply = arabic
       ? `أعلى سعر حاليًا هو ${
           mostExpensive.name_ar
-        } بسعر ${money(mostExpensive.base_price, true)}.`
+        } بسعر ${money(mostExpensive.base_price)}.`
       : `The highest current price is ${
           mostExpensive.name_en
-        } at ${money(mostExpensive.base_price, false)}.`;
+        } at ${money(mostExpensive.base_price)}.`;
   } else if (
     !reply &&
     hasAny(query, intentWords.strong, 0.66)
